@@ -1,0 +1,12 @@
+Package: CommBinary
+Type: Package
+Title: CoMM Binary
+Version: 1.0
+Date: 2019-04-10
+Author: Boran Gao
+Maintainer: Boran Gao <borang@umich.edu>
+Description: CoMM Binary is to dissecting genetic contributions to complex Disease by leveraging regulatory information.
+License: GPL-3
+Imports: Rcpp (>= 1.0.0)
+LinkingTo: Rcpp, RcppArmadillo
+RoxygenNote: 6.1.1
