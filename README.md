@@ -5,7 +5,7 @@ Collaborative mixed model to dissecting genetic contributions to complex disease
 Installation 
 ===========
 
-To install the development version of CoMM, it's easiest to use the 'devtools' package. Note that REMI depends on the 'Rcpp' package, which also requires appropriate setting of Rtools and Xcode for Windows and Mac OS/X, respectively.
+To install the development version of CoMM , it's easiest to use the 'devtools' package. Note that REMI depends on the 'Rcpp' package, which also requires appropriate setting of Rtools and Xcode for Windows and Mac OS/X, respectively.
 
 ```
 #install.packages("devtools")
