@@ -16,8 +16,8 @@ install_github("borangao/CoMM_Binary")
 Usage
 ===========
 ```
-library(CoMM)
-package?CoMM
+library(CommBinary)
+package?CommBinary
 ```
 Development
 ===========
