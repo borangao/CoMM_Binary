@@ -1,0 +1,99 @@
+#
+# This is a Shiny web application. You can run the application by clicking
+# the 'Run App' button above.
+#
+# Find out more about building applications with Shiny here:
+#
+#    http://shiny.rstudio.com/
+#
+
+library(shiny)
+library(devtools)
+install_github("borangao/CoMM_Binary")
+library(CommBinary)
+require(CommBinary)
+
+# Define UI for data upload app ----
+ui <- fluidPage(
+  
+  # App title ----
+  titlePanel("Uploading Files"),
+  
+  # Sidebar layout with input and output definitions ----
+  sidebarLayout(
+    
+    # Sidebar panel for inputs ----
+    sidebarPanel(
+      
+      # Input: Select a file ----
+      fileInput("file1", "Choose File for Trait",
+                multiple = FALSE,
+                accept = c("text")),
+      
+      # Horizontal line ----
+      tags$hr(),
+      
+      fileInput("file2", "Choose File for Gene Expression",
+                multiple = FALSE,
+                accept = c("text")),
+      
+      # Horizontal line ----
+      tags$hr(),
+      
+      fileInput("file3", "Choose File for Genotype of eQTL",
+                multiple = FALSE,
+                accept = c("text")),
+      
+      # Horizontal line ----
+      tags$hr(),
+      
+      
+      fileInput("file4", "Choose File for Genotype of trait",
+                multiple = FALSE,
+                accept = c("text"))
+
+      
+    ),
+    
+    # Main panel for displaying outputs ----
+    mainPanel(
+      
+      # Output: Data file ----
+      tableOutput("contents")
+      
+    )
+    
+  )
+)
+
+# Define server logic to read selected file ----
+server <- function(input, output) {
+  
+  
+  output$contents <- renderTable({
+    
+    # input$file1 will be NULL initially. After the user selects
+    # and uploads a file, head of that data file by default,
+    # or all rows if selected, will be shown.
+    
+    req(input$file1)
+    
+    # when reading semicolon separated files,
+    # having a comma separator causes `read.csv` to error
+  
+        Y <- as.matrix(read.table(input$file1$datapath))
+        Z <- as.matrix(read.table(input$file2$datapath))
+        X_1 <- as.matrix(read.table(input$file3$datapath))
+        X_2 <- as.matrix(read.table(input$file4$datapath))
+        out<-as.data.frame(CoMM_Binary_Testing(Y,Z,X_1,X_2))
+        return(out)
+      
+    
+    
+  })
+  
+}
+
+# Create Shiny app ----
+shinyApp(ui, server)
+
