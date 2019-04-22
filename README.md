@@ -11,6 +11,13 @@ To install the development version of CoMM , it's easiest to use the 'devtools' 
 #install.packages("devtools")
 library(devtools)
 install_github("borangao/CoMM_Binary")
+```
+
+Usage
+===========
+```
+library(CommBinary)
+package?CommBinary
 
 A<-read.table("Genotype_1.txt") // Genotype for Gene Expression
 n1 = dim(A)[1]
@@ -33,14 +40,6 @@ Z_mis = alpha*(Atilde %*%beta_g) +error_2
 pr = exp(Z_mis)/(1+exp(Z_mis))
 Y = rbinom(length(Z_mis),1,pr)
 result<-CoMM_Binary_Testing(Y,Z,A,Atilde)
-
-```
-
-Usage
-===========
-```
-library(CommBinary)
-package?CommBinary
 ```
 Development
 ===========
